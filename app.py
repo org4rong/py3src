@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "Hello World! use IP address for Concert API endpoint"
+    return "Hello World! use the SaaS Concert of IBM SPS"
 
 if __name__ == '__main__':
     port = os.environ.get('FLASK_PORT') or 8080
