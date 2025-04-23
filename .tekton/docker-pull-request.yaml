@@ -16,6 +16,7 @@ metadata:
     pipelinesascode.tekton.dev/task-6: "https://raw.githubusercontent.com/webchang/tssc-sample-templates/refs/heads/main/update-deployment_webchang.yaml"
     pipelinesascode.tekton.dev/task-7: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/show-sbom-rhdh.yaml"
     pipelinesascode.tekton.dev/task-8: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/summary.yaml"
+    pipelinesascode.tekton.dev/task-9: "https://raw.githubusercontent.com/webchang/tssc-sample-templates/refs/heads/main/concert-upload_webchang.yaml"
   labels:
     argocd/app-name: py3svc
     janus-idp.io/tekton: py3svc
@@ -46,6 +47,9 @@ spec:
     - name: git-auth
       secret:
         secretName: "{{ git_auth_secret }}"
+    - name: concert-api
+      secret:
+        secretName: concert-api
     - name: workspace
       volumeClaimTemplate:
         spec:
