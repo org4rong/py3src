@@ -6,17 +6,17 @@ metadata:
     pipelinesascode.tekton.dev/on-event: "[push]"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/max-keep-runs: "2"
-    pipelinesascode.tekton.dev/pipeline: "https://raw.githubusercontent.com/webchang/tssc-sample-templates/refs/heads/main/docker-build-rhtap_webchang.yaml"
+    pipelinesascode.tekton.dev/pipeline: "https://raw.githubusercontent.com/webchang/tssc-sample-templates/refs/heads/main/concert-docker-build-rhtap.yaml"
     pipelinesascode.tekton.dev/task-0: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/init.yaml"
     pipelinesascode.tekton.dev/task-1: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/git-clone.yaml"
     pipelinesascode.tekton.dev/task-2: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/buildah-rhtap.yaml"
     pipelinesascode.tekton.dev/task-3: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/acs-image-check.yaml"
     pipelinesascode.tekton.dev/task-4: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/acs-image-scan.yaml"
     pipelinesascode.tekton.dev/task-5: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/acs-deploy-check.yaml"
-    pipelinesascode.tekton.dev/task-6: "https://raw.githubusercontent.com/webchang/tssc-sample-templates/refs/heads/main/update-deployment_webchang.yaml"
+    pipelinesascode.tekton.dev/task-6: "https://raw.githubusercontent.com/webchang/tssc-sample-templates/refs/heads/main/concert-update-deployment.yaml"
     pipelinesascode.tekton.dev/task-7: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/show-sbom-rhdh.yaml"
     pipelinesascode.tekton.dev/task-8: "https://raw.githubusercontent.com/redhat-appstudio/tssc-sample-pipelines/v1.4.x/pac/tasks/summary.yaml"
-    pipelinesascode.tekton.dev/task-9: "https://raw.githubusercontent.com/webchang/tssc-sample-templates/refs/heads/main/concert-upload_webchang.yaml"
+    pipelinesascode.tekton.dev/task-9: "https://raw.githubusercontent.com/webchang/tssc-sample-templates/refs/heads/main/concert-upload-ci.yaml"
   labels:
     argocd/app-name: py3svc
     janus-idp.io/tekton: py3svc
@@ -41,6 +41,16 @@ spec:
       value: '{{event_type}}'
     - name: gitops-auth-secret-name
       value: gitops-auth-secret
+    - name: build-args
+      value:
+        - "source-url={{repo_url}}"
+        - "source-revision={{revision}}"
+    - name: concert-enabled
+      value: "true"
+    - name: concert-component-name
+      value: $(basename {{repo_url}})
+    - name: concert-component-version
+      value: "1.0.0"
   pipelineRef:
     name: docker-build-rhtap
   workspaces:
