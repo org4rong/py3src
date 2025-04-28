@@ -47,8 +47,6 @@ spec:
         - "source-revision={{revision}}"
     - name: concert-enabled
       value: "true"
-    - name: concert-component-version
-      value: "1.0.0"
   pipelineRef:
     name: docker-build-rhtap
   workspaces:
