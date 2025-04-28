@@ -47,8 +47,6 @@ spec:
         - "source-revision={{revision}}"
     - name: concert-enabled
       value: "true"
-    - name: concert-component-name
-      value: "$(echo {{repo_url}} | rev | cut -d'/' -f1 | rev)"
     - name: concert-component-version
       value: "1.0.0"
   pipelineRef:
