@@ -45,7 +45,11 @@ spec:
       value:
         - "source-url={{repo_url}}"
         - "source-revision={{revision}}"
-    - name: concert-enabled
+    - name: if-concert-enabled # optional, default is "false"
+      value: "true"
+    - name: concert-component-version # optional, default is '1.0.0'
+      value: "1.0.0"
+    - name: if-concert-app-sbom # optional, default is "false"
       value: "true"
   pipelineRef:
     name: docker-build-rhtap
