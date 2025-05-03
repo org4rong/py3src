@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "Hello World! git filemode"
+    return "Hello World! image url based filtering"
 
 if __name__ == '__main__':
     port = os.environ.get('FLASK_PORT') or 8080
