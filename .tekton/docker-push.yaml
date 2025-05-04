@@ -52,10 +52,7 @@ spec:
     - name: if-concert-app-sbom # optional, default is "false"
       value: "true"
     - name: concert-env-kinds # optional, for Concert
-      value:
-        - development
-        - stage
-        - prod
+      value: ["development", "stage", "prod"]
   pipelineRef:
     name: docker-build-rhtap
   workspaces:
