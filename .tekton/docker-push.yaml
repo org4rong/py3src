@@ -45,13 +45,17 @@ spec:
       value:
         - "source-url={{repo_url}}"
         - "source-revision={{revision}}"
-    - name: if-concert-enabled # optional, default is "false"
+    - name: if-concert-enabled
+      description: Optional Concert enablement setting for generating and uploading ConcertDef files.  Default is "false".
       value: "true"
-    - name: concert-component-version # optional, default is '1.0.0'
+    - name: concert-component-version
+      description: Optional Concert setting for the ConcertDef component version.  Default is "1.0.0".
       value: "1.0.0"
-    - name: if-concert-app-sbom # optional, default is "false"
+    - name: if-concert-app-sbom
+      description: Optional Concert setting for ConcertDef APP Blueprint SBOM generation and upload.  Default is "false"
       value: "true"
-    - name: concert-env-kinds # optional, for Concert
+    - name: concert-env-kinds
+      description: Optional Concert setting for Concert environment generation and upload.  Default is '["development", "stage", "prod"]'
       value: '["development", "stage", "prod"]'
   pipelineRef:
     name: docker-build-rhtap
